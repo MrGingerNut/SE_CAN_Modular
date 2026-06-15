@@ -139,7 +139,7 @@ void ADC0_SS2_Init(void) { // Rutina de configuracion del ADC0 para dos muestras
     ADC0_SSTSH2_R = 0x000;    // 14) Se configure el ADC para un periodo de 4  S&H (default) (p. 1139)
     ADC0_SSMUX2_R = 0x0089;    // 15) Se configura entradas 1�muestra=AIN9 2�muestra=AIN8 3�muestra=AIN7 (p.1128)
     ADC0_SSEMUX2_R &= ~0x0011; // 16) Canales del SS2 para 1�muestra 2�muestra y 3�muestra en AIN(15:0) (p.1137)
-    ADC0_SSCTL2_R = 0x0060;    // 17) Si: sensor de temperatura, Habilitacion de INR3, Fin de secuencia; No:muestra diferencial (p.1142)
+    ADC0_SSCTL2_R = 0x0060;    // 17) No: sensor de temperatura, Habilitacion de INR3, Fin de secuencia; 2 sample end sequence; No:muestra diferencial (p.1142)
     ADC0_IM_R = 0x0004;      // 18) habilita interrupcion SS2 (p. 1081)
     ADC0_ACTSS_R |= 0x0004;    // 19) Habilita SS2 (p. 1076)
 

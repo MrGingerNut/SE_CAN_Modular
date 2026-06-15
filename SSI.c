@@ -40,7 +40,7 @@
 
 void SSI0_Init(void){
 
-    SYSCTL_RCGCSSI_R = SYSCTL_RCGCSSI_R0; // Activa reloj al SSI0
+    SYSCTL_RCGCSSI_R |= SYSCTL_RCGCSSI_R0; // Activa reloj al SSI0
     while ((SYSCTL_PRSSI_R & SYSCTL_PRSSI_R0) == 0); // Espera a que este listo
     SYSCTL_RCGCGPIO_R |= SYSCTL_RCGCGPIO_R0; // Activa reloj del GPIO A
     while ((SYSCTL_PRGPIO_R & SYSCTL_PRGPIO_R0) == 0); // Espera a que este listo // 0b00111100

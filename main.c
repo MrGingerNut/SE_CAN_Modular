@@ -21,7 +21,6 @@
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "UART.h"                                                                                   /*  Archivo de cabecera del módulo UART */
 #include "ADC.h"                                                                                    /*  Archivo de cabecera del módulo ADC */
-#include "ADC.h"                                                                                    /*  Archivo de cabecera del módulo ADC */
 #include "GPTM.h"                                                                                   /*  Archivo de cabecera del módulo GPTM */
 #include "SSI.h"                                                                                    /*  Archivo de cabecera del módulo SPI */
 #include "VarVEL.h"
@@ -88,8 +87,5 @@ int main(void) {
         }
     }
 
-    while (1) {
-        GPIO_PORTN_DATA_R ^= 0x02;
-        GPIO_PORTN_DATA_R ^= 0x00;
-    }
+    while (1);
 }

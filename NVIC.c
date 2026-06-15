@@ -49,7 +49,17 @@ void ADC0_Handler(void){
 
     ADC0_PSSI_R = 0x0004;//Inicia conversion del SS2
 
-    if(eje_x > 3800 ){ // giro derecha
+    if(eje_y > 3800 && eje_x < 300){ // da la vuelta
+        //GPIO_PORTK_DATA_R = vuelta; //gira ambos motores sentido contrario
+        while((UART7_FR_R & 0x20) != 0);
+        UART7_DR_R = 'q';
+    }
+    else if(eje_y > 3800 && eje_x > 3800){ // da la vuelta
+        //GPIO_PORTK_DATA_R = vuelta; //gira ambos motores sentido contrario
+        while((UART7_FR_R & 0x20) != 0);
+        UART7_DR_R = 'e';
+    }
+    else if(eje_x > 3800 ){ // giro derecha
         //GPIO_PORTK_DATA_R = derecha; // gira el motor A hacia adelante
         while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'd';
@@ -63,16 +73,6 @@ void ADC0_Handler(void){
         //GPIO_PORTK_DATA_R = adelante; //gira ambos motores
                 while((UART7_FR_R & 0x20) != 0);
                  UART7_DR_R = 'w';
-    }
-    else if(eje_y > 3800 && eje_x < 300){ // da la vuelta
-        //GPIO_PORTK_DATA_R = vuelta; //gira ambos motores sentido contrario
-                while((UART7_FR_R & 0x20) != 0);
-                 UART7_DR_R = 'q';
-    }
-        else if(eje_y > 3800 && eje_x > 3800){ // da la vuelta
-        //GPIO_PORTK_DATA_R = vuelta; //gira ambos motores sentido contrario
-                while((UART7_FR_R & 0x20) != 0);
-                 UART7_DR_R = 'e';
     }
     else{ // uy quieto
         //GPIO_PORTK_DATA_R = uyquieto; // idle
