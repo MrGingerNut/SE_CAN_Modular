@@ -15,6 +15,7 @@ GPIO.obj: /home/felix/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/includ
 GPIO.obj: /home/felix/Documents/CCS/CAN_MODULAR/tm4c1294ncpdt.h
 GPIO.obj: ../NVIC.h
 GPIO.obj: ../SYSCTL.h
+GPIO.obj: ../VarVEL.h
 
 ../GPIO.c:
 
@@ -45,4 +46,6 @@ GPIO.obj: ../SYSCTL.h
 ../NVIC.h:
 
 ../SYSCTL.h:
+
+../VarVEL.h:
 

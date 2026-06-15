@@ -27,7 +27,7 @@
  */
 volatile int a = 0, b = 0;
 volatile char dato;
-volatile uint32_t eje_x = 2048, eje_y = 2048, BotonPH; // variables para la direccion de los joysticks y contador de interrupcion de PH
+volatile uint32_t eje_x = 2048, eje_y = 2048; // variables para la direccion de los joysticks y contador de interrupcion de PH
 volatile uint8_t cuenta = 0; // variable para saber si esta en modo automatico o remoto
 
 /**************************************************************************************************
@@ -76,6 +76,28 @@ void ADC0_Handler(void){
     }
     else{ // uy quieto
         //GPIO_PORTK_DATA_R = uyquieto; // idle
+    }
+
+}
+
+/************************************************
+ *  Función:        GPIOL_Handler
+ *
+ *  Descripción:    Ruitna de Servicio de Interrupción del GPIO L.
+ */
+
+void GPIOK_Handler(void){
+
+    GPIO_PORTK_ICR_R = 0x01; // bandera 0 de confirmaci�n
+    BotonPK++;
+
+    if(BotonPK % 2 == 0){
+        while((UART7_FR_R & 0x20) != 0);
+        UART7_DR_R = 'r';
+    }
+    else {
+        while((UART7_FR_R & 0x20) != 0);
+        UART7_DR_R = 'p';
     }
 
 }
@@ -268,8 +290,6 @@ void TIMER3_Handler(void) {
           else if(dato == 'w' && cuenta ==1){ // forward pa delante
               speed_a = 80;
               speed_b = 80;
-//              while((UART7_FR_R & 0x20) != 0);
-//                  UART7_DR_R = 'T';
           }
           else if(dato == 'a' && cuenta ==1){ // left pa la izquierda
               speed_a = 70;
@@ -295,9 +315,9 @@ void TIMER3_Handler(void) {
           UART7_ICR_R = 0x10;
       }
 
-    if(UART7_MIS_R & 0X20){ // esto para transmitir ???
-
-        UART7_ICR_R = 0X20;
-    }
+//    if(UART7_MIS_R & 0X20){ // esto para transmitir ???
+//
+//        UART7_ICR_R = 0X20;
+//    }
 
 }

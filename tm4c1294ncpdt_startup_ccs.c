@@ -57,6 +57,7 @@ extern uint32_t __STACK_TOP;
 // To be added by user
 extern void ADC0_Handler(void);
 extern void GPIOL_Handler(void);
+extern void GPIOK_Handler(void);
 extern void TIMER3_Handler(void);
 extern void UART7_Handler(void);
 //*****************************************************************************
@@ -138,7 +139,7 @@ void (* const g_pfnVectors[])(void) =
     IntDefaultHandler,                      // ADC1 Sequence 3
     IntDefaultHandler,                      // External Bus Interface 0
     IntDefaultHandler,                      // GPIO Port J
-    IntDefaultHandler,                      // GPIO Port K
+    GPIOK_Handler,                      // GPIO Port K
     GPIOL_Handler,                      // GPIO Port L
     IntDefaultHandler,                      // SSI2 Rx and Tx
     IntDefaultHandler,                      // SSI3 Rx and Tx

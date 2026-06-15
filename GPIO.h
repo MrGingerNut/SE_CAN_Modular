@@ -17,7 +17,6 @@
 #ifndef GPIO_H                                                                                      /*  Verificar si GPIO_H no ha sido definido previamente */
 #define GPIO_H                                                                                      /*  Definir GPIO_H para evitar inclusiones múltiples del mismo archivo */
 
-
 /**************************************************************************************************
  *  Archivos de cabecera
  */

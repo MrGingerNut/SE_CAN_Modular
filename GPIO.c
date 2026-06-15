@@ -20,7 +20,7 @@
 #include "GPIO.h"                                                                                   /*  Archivo de cabecera del módulo GPIO */
 #include "NVIC.h"                                                                                   /*  Archivo de cabecera del módulo NVIC */
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
-
+#include "VarVEL.h"
 
 /**************************************************************************************************
  *  Variables externas (parámetros)
@@ -58,19 +58,26 @@ void GPIO_PortE_Init(void) {
  *  Descripción:    Inicialización y configuración del puerto GPIO K.
  */
 
+volatile uint32_t BotonPK;
+
 void GPIO_PortK_Init(void) {
 
-    /** 1.  Habilitar la señal de reloj del GPIO y esperar a que se estabilice el reloj. */
-    SYSCTL_RCGCGPIO_R |= (1 << 8) | (1 << 9)    | (1 << 12);  // J, K, N
-    while ((SYSCTL_PRGPIO_R & ((1 << 8) | (1 << 9) | (1 << 12))) == 0){}; // reloj listo?
-    /** 2.  Configurar la dirección de los pines del puerto GPIO. */
-    GPIO_PORTK_DIR_R |= 0x0F;
-    /** 3.  Habilitar las funciones alternas de hardware de los pines de los puertos GPIO. (p.770) */
-    //GPIO_PORTE_AHB_AFSEL_R |= 0x30;
-    /** 4.  Deshabilitar las funciones digitales de los pines del puerto GPIO. (p.781) */
-    GPIO_PORTK_DEN_R |= 0x0F;
-    /** 5.  Habilitar las funciones analógica de los pines del puerto GPIO. (p. 786) */
-    //GPIO_PORTE_AHB_AMSEL_R |= 0x30;
+    SYSCTL_RCGCGPIO_R |= (1 << 9);
+    while((SYSCTL_PRGPIO_R & ((1 << 9))) == 0);
+
+    GPIO_PORTK_DIR_R &= ~0x01;
+    GPIO_PORTK_DEN_R |= 0x01;
+    GPIO_PORTK_PUR_R |= 0x01;
+    GPIO_PORTK_IS_R &= ~0x01; // (d) PH0 es sensible por flanco
+    GPIO_PORTK_IBE_R &= ~   0x01; // PH0 no es sensible a dos flancos
+    GPIO_PORTK_IEV_R &= ~0x01; // PH0 detecta eventos de flanco de bajada
+    GPIO_PORTK_ICR_R = 0x01; // (e) limpia la bandera 0
+    GPIO_PORTK_IM_R |= 0x01; // (f) Se desenmascara la interrupcion PH0 y se envia al controlador de interrupciones
+
+    NVIC_PRI13_R = (NVIC_PRI13_R & 0xFF00FFFF) | 0x00200000; // Prioridad 1
+    NVIC_EN1_R |= (1 <<(52-32));
+
+    BotonPK = 1;
 
 }
 
