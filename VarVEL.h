@@ -24,7 +24,7 @@ extern volatile uint8_t speed_a, speed_b, seguidor;
  */
 
 #include <stdint.h>                                                                                 /*  Tipos enteros con tamaños fijos */
-#include </home/felix/ti/tm4c1294ncpdt.h>
+#include <tm4c1294ncpdt.h>
 
 /**************************************************************************************************
  *  Prototipos de funciones

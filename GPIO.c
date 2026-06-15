@@ -140,7 +140,7 @@ void GPIO_PortL_Init(void){
  *  Descripción:    Desactivación del puerto GPIO L.
  */
 
-void GPIOL_PortL_Disable(void){ // Rutina de configuracion del GPIOH
+void GPIO_PortL_Disable(void){ // Rutina de configuracion del GPIOH
 
     NVIC_EN1_R &= ~(1 << (53 - 32)); // deshabilitar el nvic
 

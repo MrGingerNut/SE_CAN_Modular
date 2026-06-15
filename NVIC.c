@@ -20,7 +20,7 @@
 #include "NVIC.h"                                                                                   /*  Archivo de cabecera del módulo NVIC */
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "VarVEL.h"
-#include </home/felix/ti/tm4c1294ncpdt.h>
+#include <tm4c1294ncpdt.h>
 
 /**************************************************************************************************
  *  Variables externas (parámetros)
@@ -254,7 +254,7 @@ void TIMER3_Handler(void) {
           dato = (char)(UART7_DR_R & 0xFF);
 
           if(dato == 'r'){ //remoto
-              GPIOL_PortL_Disable();
+              GPIO_PortL_Disable();
               cuenta = 1;
               speed_a = 0;
               speed_b = 0;

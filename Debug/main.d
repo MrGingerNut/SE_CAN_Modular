@@ -12,7 +12,7 @@ main.obj: /home/felix/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/includ
 main.obj: /home/felix/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/machine/_stdint.h
 main.obj: /home/felix/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/sys/_stdint.h
 main.obj: ../GPIO.h
-main.obj: /home/felix/ti/tm4c1294ncpdt.h
+main.obj: /home/felix/Documents/CCS/CAN_MODULAR/tm4c1294ncpdt.h
 main.obj: ../NVIC.h
 main.obj: ../SYSCTL.h
 main.obj: ../UART.h
@@ -45,7 +45,7 @@ main.obj: ../VarVEL.h
 
 ../GPIO.h:
 
-/home/felix/ti/tm4c1294ncpdt.h:
+/home/felix/Documents/CCS/CAN_MODULAR/tm4c1294ncpdt.h:
 
 ../NVIC.h:
 

@@ -1,7 +1,7 @@
 ******************************************************************************
                   TI ARM Linker Unix v20.2.7                   
 ******************************************************************************
->> Linked Mon Jun 15 11:21:25 2026
+>> Linked Mon Jun 15 11:34:16 2026
 
 OUTPUT FILE NAME:   <CAN_MODULAR.out>
 ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00000fed
@@ -144,9 +144,9 @@ address   name
 00000209  ADC0_Handler                  
 0000104b  C$$EXIT                       
 000002cf  GPIOL_Handler                 
-00000aab  GPIOL_PortL_Disable           
 000009b5  GPIO_PortE_Init               
 000009ed  GPIO_PortK_Init               
+00000aab  GPIO_PortL_Disable            
 00000a3f  GPIO_PortL_Init               
 00000a17  GPIO_PortN_Init               
 00000e45  GPTM3_Init                    
@@ -231,7 +231,7 @@ address   name
 000009ed  GPIO_PortK_Init               
 00000a17  GPIO_PortN_Init               
 00000a3f  GPIO_PortL_Init               
-00000aab  GPIOL_PortL_Disable           
+00000aab  GPIO_PortL_Disable            
 00000b1d  main                          
 00000c81  UART7_Init                    
 00000da9  __aeabi_memcpy                
