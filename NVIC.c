@@ -20,6 +20,8 @@
 #include "NVIC.h"                                                                                   /*  Archivo de cabecera del módulo NVIC */
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "VarVEL.h"
+#include "UART.h"
+#include "IEEE_CAN.h"
 #include <tm4c1294ncpdt.h>
 
 /**************************************************************************************************

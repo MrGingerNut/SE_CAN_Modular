@@ -17,7 +17,7 @@
 #define VARVEL_H_                                                                                   /*  Definir SYSCTL_H para evitar inclusiones múltiples del mismo archivo */
 
 extern int sp20[256], sp40[256], sp50[256], sp60[256], sp70[256], sp80[256], sp90[256];
-extern volatile uint8_t speed_a, speed_b, seguidor;
+extern volatile uint8_t speed_a, speed_b, seguidor, cuenta=0;
 extern volatile uint32_t BotonPK;
 
 /**************************************************************************************************

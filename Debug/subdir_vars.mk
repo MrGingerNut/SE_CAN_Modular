@@ -8,8 +8,10 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../ADC.c \
+../CAN.c \
 ../GPIO.c \
 ../GPTM.c \
+../IEEE_CAN.c \
 ../NVIC.c \
 ../SSI.c \
 ../UART.c \
@@ -18,8 +20,10 @@ C_SRCS += \
 
 C_DEPS += \
 ./ADC.d \
+./CAN.d \
 ./GPIO.d \
 ./GPTM.d \
+./IEEE_CAN.d \
 ./NVIC.d \
 ./SSI.d \
 ./UART.d \
@@ -28,8 +32,10 @@ C_DEPS += \
 
 OBJS += \
 ./ADC.obj \
+./CAN.obj \
 ./GPIO.obj \
 ./GPTM.obj \
+./IEEE_CAN.obj \
 ./NVIC.obj \
 ./SSI.obj \
 ./UART.obj \
@@ -38,8 +44,10 @@ OBJS += \
 
 OBJS__QUOTED += \
 "ADC.obj" \
+"CAN.obj" \
 "GPIO.obj" \
 "GPTM.obj" \
+"IEEE_CAN.obj" \
 "NVIC.obj" \
 "SSI.obj" \
 "UART.obj" \
@@ -48,8 +56,10 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "ADC.d" \
+"CAN.d" \
 "GPIO.d" \
 "GPTM.d" \
+"IEEE_CAN.d" \
 "NVIC.d" \
 "SSI.d" \
 "UART.d" \
@@ -58,8 +68,10 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../ADC.c" \
+"../CAN.c" \
 "../GPIO.c" \
 "../GPTM.c" \
+"../IEEE_CAN.c" \
 "../NVIC.c" \
 "../SSI.c" \
 "../UART.c" \

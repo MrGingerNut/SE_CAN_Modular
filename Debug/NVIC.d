@@ -16,6 +16,7 @@ NVIC.obj: /home/felix/Documents/CCS/CAN_MODULAR/tm4c1294ncpdt.h
 NVIC.obj: ../NVIC.h
 NVIC.obj: ../SYSCTL.h
 NVIC.obj: ../VarVEL.h
+NVIC.obj: ../UART.h
 
 ../NVIC.c:
 
@@ -48,4 +49,6 @@ NVIC.obj: ../VarVEL.h
 ../SYSCTL.h:
 
 ../VarVEL.h:
+
+../UART.h:
 

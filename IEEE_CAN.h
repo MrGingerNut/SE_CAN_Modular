@@ -1,3 +1,18 @@
+/**************************************************************************************************
+ *  Universidad Nacional Autónoma de México (UNAM)
+ *  Facultad de Ingeniería | Departamento de Electrónica
+ *
+ *  Asignatura:     Sistemas Embebidos
+ *  Profesor:       Dr. Saúl de la Rosa Nieves
+ *
+ *  Tema:           CAN y Periféricos
+ *  Descripción:
+ *
+ *  Archivo:        Archivo de cabecera del módulo GPTM
+ *
+ *  Tarjeta de desarrollo:  EK-TM4C1294XL Evaluation board
+ ***********************************************/
+
 #ifndef IEEE_CAN_H_
 #define IEEE_CAN_H_
 
