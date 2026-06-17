@@ -17,8 +17,6 @@ main.obj: ../NVIC.h
 main.obj: ../SYSCTL.h
 main.obj: ../UART.h
 main.obj: ../ADC.h
-main.obj: ../GPTM.h
-main.obj: ../SSI.h
 main.obj: ../VarVEL.h
 
 ../main.c:
@@ -54,10 +52,6 @@ main.obj: ../VarVEL.h
 ../UART.h:
 
 ../ADC.h:
-
-../GPTM.h:
-
-../SSI.h:
 
 ../VarVEL.h:
 

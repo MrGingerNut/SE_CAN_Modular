@@ -21,7 +21,7 @@
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "VarVEL.h"
 #include "UART.h"
-#include "IEEE_CAN.h"
+//#include "IEEE_CAN.h"
 #include <tm4c1294ncpdt.h>
 
 /**************************************************************************************************
@@ -30,7 +30,7 @@
 volatile int a = 0, b = 0;
 volatile char dato;
 volatile uint32_t eje_x = 2048, eje_y = 2048; // variables para la direccion de los joysticks y contador de interrupcion de PH
-volatile uint8_t cuenta = 0; // variable para saber si esta en modo automatico o remoto
+volatile uint8_t cuenta; // variable para saber si esta en modo automatico o remoto
 
 /**************************************************************************************************
  *  Funciones

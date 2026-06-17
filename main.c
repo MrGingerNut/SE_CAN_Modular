@@ -21,8 +21,8 @@
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "UART.h"                                                                                   /*  Archivo de cabecera del módulo UART */
 #include "ADC.h"                                                                                    /*  Archivo de cabecera del módulo ADC */
-#include "GPTM.h"                                                                                   /*  Archivo de cabecera del módulo GPTM */
-#include "SSI.h"                                                                                    /*  Archivo de cabecera del módulo SPI */
+//#include "GPTM.h"                                                                                   /*  Archivo de cabecera del módulo GPTM */
+//#include "SSI.h"                                                                                    /*  Archivo de cabecera del módulo SPI */
 #include "VarVEL.h"
 
 /**************************************************************************************************
@@ -39,16 +39,16 @@ volatile uint8_t speed_a=0, speed_b=0, seguidor;
 int main(void) {
 
     GPIO_PortE_Init();                                                                              /*  Inicialización y configuración del puerto GPIO E */
-//    GPIO_PortK_Init();                                                                              /*  Inicialización y configuración del puerto GPIO K */
+    GPIO_PortK_Init();                                                                              /*  Inicialización y configuración del puerto GPIO K */
 //    GPIO_PortN_Init();                                                                              /*  Inicialización y configuración del puerto GPIO N */
-    GPIO_PortL_Init();                                                                              /*  Inicialización y configuración del puerto GPIO L */
+//    GPIO_PortL_Init();                                                                              /*  Inicialización y configuración del puerto GPIO L */
     UART7_Init();                                                                                   /*  Inicialización y configuración del UART7 */
-    SSI0_Init();                                                                                    /*  Inicialización y configuración del SSI0 */
-    SSI1_Init();                                                                                    /*  Inicialización y configuración del SSI1 */
-//    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
-    GPTM3_Init();                                                                                   /*  Inicialización y configuración del GPTM 3 */
+//    SSI0_Init();                                                                                    /*  Inicialización y configuración del SSI0 */
+//    SSI1_Init();                                                                                    /*  Inicialización y configuración del SSI1 */
+    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
+//    GPTM3_Init();                                                                                   /*  Inicialización y configuración del GPTM 3 */
 
-    for(i=0; i<256;i++){
+/*for(i=0; i<256;i++){
         if(i < 51){
             sp20[i] = 255;
         } else {
@@ -85,7 +85,7 @@ int main(void) {
         } else {
             sp90[i] = 0;
         }
-    }
+    }*/
 
     while (1);
 }

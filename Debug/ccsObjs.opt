@@ -1,8 +1,6 @@
 "./ADC.obj"
-"./CAN.obj"
 "./GPIO.obj"
 "./GPTM.obj"
-"./IEEE_CAN.obj"
 "./NVIC.obj"
 "./SSI.obj"
 "./UART.obj"
