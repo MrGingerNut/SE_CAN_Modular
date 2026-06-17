@@ -53,32 +53,32 @@ void ADC0_Handler(void){
 
     if(eje_y > 3800 && eje_x < 300){ // da la vuelta
         //GPIO_PORTK_DATA_R = vuelta; //gira ambos motores sentido contrario
-        while((UART7_FR_R & 0x20) != 0);
+//        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'q';
     }
     else if(eje_y > 3800 && eje_x > 3800){ // da la vuelta
         //GPIO_PORTK_DATA_R = vuelta; //gira ambos motores sentido contrario
-        while((UART7_FR_R & 0x20) != 0);
+//        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'e';
     }
     else if(eje_x > 3800 ){ // giro derecha
         //GPIO_PORTK_DATA_R = derecha; // gira el motor A hacia adelante
-        while((UART7_FR_R & 0x20) != 0);
+//        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'd';
     }
     else if(eje_x < 300){ //giro izquierda
         //GPIO_PORTK_DATA_R = izquierda; // gira el motor B hacia adelante
-        while((UART7_FR_R & 0x20) != 0);
-                 UART7_DR_R = 'a';
+//        while((UART7_FR_R & 0x20) != 0);
+         UART7_DR_R = 'a';
     }
     else if(eje_y > 3800){ //avanza
         //GPIO_PORTK_DATA_R = adelante; //gira ambos motores
-                while((UART7_FR_R & 0x20) != 0);
+//        while((UART7_FR_R & 0x20) != 0);
                  UART7_DR_R = 'w';
     }
-    else{ // uy quieto
+//    else{ // uy quieto
         //GPIO_PORTK_DATA_R = uyquieto; // idle
-    }
+//    }
 
 }
 
