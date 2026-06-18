@@ -52,7 +52,7 @@ int main(void) {
     Config_CAN();
 
     CAN_Memoria_Arb(0x100, true, 0x2);
-    CAN_Memoria_CtrlMask(0x000, 1, false, false, false, 0x2);
+    CAN_Memoria_CtrlMsk(0x000, 1, false, false, false, 0x2);
     CAN_Memoria_Dato(0x00, 0x2);
 
 //for(i=0; i<256;i++){
