@@ -96,10 +96,14 @@ void GPIOK_Handler(void){
     if(BotonPK % 2 == 0){
 //        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'r';
+        CAN_Memoria_Dato(0x72, 0x2); // 'r'
+        CAN_Tx(0x2);
     }
     else {
 //        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'p';
+        CAN_Memoria_Dato(0x70, 0x2); // 'p'
+        CAN_Tx(0x2);
     }
 
 }
@@ -333,8 +337,8 @@ void TIMER3_Handler(void) {
 
  void CAN_Handler(void){
      //Configuración para Recepción Sencilla Sin Mascara Localidad #1
-     CAN_Memoria_Arb(0x101,true,0x2);                        //ID, TxRx, Localidad
-     CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
+//     CAN_Memoria_Arb(0x101,true,0x2);                        //ID, TxRx, Localidad
+//     CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
 
      //Configuración para la Transmisión Sencilla Localidad #2
  //    CAN_Memoria_Arb(0xBB,true,0x2);                         //ID, TxRx, Localidad

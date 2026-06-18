@@ -20,7 +20,7 @@
 #include "NVIC.h"                                                                                   /*  Archivo de cabecera del módulo NVIC */
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "IEEE_CAN.h"                                                                                 /*  Archivo de cabecera del módulo CAN */
-#include </home/felix/ti/tm4c1294ncpdt.h>
+#include <tm4c1294ncpdt.h>
 
 /**************************************************************************************************
  *  Variables externas (parámetros)

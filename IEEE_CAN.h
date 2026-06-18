@@ -35,6 +35,7 @@ void CAN_Tx(uint64_t NoObj);
 void CAN_Memoria_CtrlMsk(uint16_t Mask, uint8_t DatoL, bool TXIE, bool RXIE, bool RMTEN, uint8_t ObjNo);
 void CAN_Memoria_Arb(uint16_t ID, bool TxRx, uint8_t ObjNo);
 void CAN_Memoria_Dato(uint64_t Dato, uint8_t NoObj);
-
+void Config_Puertos(void);
+void Config_CAN(void);
 
 #endif                                                                                              /*  CAN_H */

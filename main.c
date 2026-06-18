@@ -45,8 +45,15 @@ int main(void) {
     UART7_Init();                                                                                   /*  Inicialización y configuración del UART7 */
 //    SSI0_Init();                                                                                    /*  Inicialización y configuración del SSI0 */
 //    SSI1_Init();                                                                                    /*  Inicialización y configuración del SSI1 */
-//    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
+    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
 //    GPTM3_Init();                                                                                   /*  Inicialización y configuración del GPTM 3 */
+
+    Config_Puertos();
+    Config_CAN();
+
+    CAN_Memoria_Arb(0x100, true, 0x2);
+    CAN_Memoria_CtrlMask(0x000, 1, false, false, false, 0x2);
+    CAN_Memoria_Dato(0x00, 0x2);
 
 //for(i=0; i<256;i++){
 //        if(i < 51){
