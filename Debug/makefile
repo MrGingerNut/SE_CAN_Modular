@@ -9,6 +9,7 @@ GEN_CMDS__FLAG :=
 
 ORDERED_OBJS += \
 "./ADC.obj" \
+"./CAN.obj" \
 "./GPIO.obj" \
 "./GPTM.obj" \
 "./NVIC.obj" \
@@ -146,8 +147,8 @@ CAN_MODULAR.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(EXE_OUTPUTS__QUOTED)
-	-$(RM) "ADC.obj" "GPIO.obj" "GPTM.obj" "NVIC.obj" "SSI.obj" "UART.obj" "main.obj" "tm4c1294ncpdt_startup_ccs.obj" 
-	-$(RM) "ADC.d" "GPIO.d" "GPTM.d" "NVIC.d" "SSI.d" "UART.d" "main.d" "tm4c1294ncpdt_startup_ccs.d" 
+	-$(RM) "ADC.obj" "CAN.obj" "GPIO.obj" "GPTM.obj" "NVIC.obj" "SSI.obj" "UART.obj" "main.obj" "tm4c1294ncpdt_startup_ccs.obj" 
+	-$(RM) "ADC.d" "CAN.d" "GPIO.d" "GPTM.d" "NVIC.d" "SSI.d" "UART.d" "main.d" "tm4c1294ncpdt_startup_ccs.d" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

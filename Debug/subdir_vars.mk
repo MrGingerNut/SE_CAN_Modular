@@ -8,6 +8,7 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../ADC.c \
+../CAN.c \
 ../GPIO.c \
 ../GPTM.c \
 ../NVIC.c \
@@ -18,6 +19,7 @@ C_SRCS += \
 
 C_DEPS += \
 ./ADC.d \
+./CAN.d \
 ./GPIO.d \
 ./GPTM.d \
 ./NVIC.d \
@@ -28,6 +30,7 @@ C_DEPS += \
 
 OBJS += \
 ./ADC.obj \
+./CAN.obj \
 ./GPIO.obj \
 ./GPTM.obj \
 ./NVIC.obj \
@@ -38,6 +41,7 @@ OBJS += \
 
 OBJS__QUOTED += \
 "ADC.obj" \
+"CAN.obj" \
 "GPIO.obj" \
 "GPTM.obj" \
 "NVIC.obj" \
@@ -48,6 +52,7 @@ OBJS__QUOTED += \
 
 C_DEPS__QUOTED += \
 "ADC.d" \
+"CAN.d" \
 "GPIO.d" \
 "GPTM.d" \
 "NVIC.d" \
@@ -58,6 +63,7 @@ C_DEPS__QUOTED += \
 
 C_SRCS__QUOTED += \
 "../ADC.c" \
+"../CAN.c" \
 "../GPIO.c" \
 "../GPTM.c" \
 "../NVIC.c" \

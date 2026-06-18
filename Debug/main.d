@@ -20,6 +20,9 @@ main.obj: ../ADC.h
 main.obj: ../GPTM.h
 main.obj: ../SSI.h
 main.obj: ../VarVEL.h
+main.obj: ../IEEE_CAN.h
+main.obj: /home/felix/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h
+main.obj: /home/felix/ti/tm4c1294ncpdt.h
 
 ../main.c:
 
@@ -60,4 +63,10 @@ main.obj: ../VarVEL.h
 ../SSI.h:
 
 ../VarVEL.h:
+
+../IEEE_CAN.h:
+
+/home/felix/ti/ccs1281/ccs/tools/compiler/ti-cgt-arm_20.2.7.LTS/include/stdbool.h:
+
+/home/felix/ti/tm4c1294ncpdt.h:
 

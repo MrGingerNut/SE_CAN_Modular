@@ -21,7 +21,7 @@
 #include "SYSCTL.h"                                                                                 /*  Archivo de cabecera del módulo SYSCTL */
 #include "VarVEL.h"
 #include "UART.h"
-//#include "IEEE_CAN.h"
+#include "IEEE_CAN.h"
 #include <tm4c1294ncpdt.h>
 
 /**************************************************************************************************
@@ -115,52 +115,52 @@ void GPIOL_Handler(void){
     seguidor = GPIO_PORTL_DATA_R & 0x1F;
 
     GPIO_PORTL_ICR_R = 0x1F;
-if(cuenta == 0){
+
     switch(seguidor){
 
         case 0b11111: // fuera de linea giro fuerte pa la izquierda
             speed_a = 90; //motor derecho
-            speed_b = 40; //motor izquierdo
+            speed_b = 0; //motor izquierdo
             break;
         case 0b11110: // linea muy a la derecha
-            speed_a = 50; //motor derecho
-            speed_b = 90; //motor izquierdo
-            break;
-        case 0b11100: // linea a la derecha
-            speed_a = 50; //motor derecho
-            speed_b = 80; //motor izquierdo
-            break;
-        case 0b11101: // linea desplazada a la derecha
-            speed_a = 60; //motor derecho
-            speed_b = 80; //motor izquierdo
-            break;
-        case 0b11011: // linea al centro
-            speed_a = 80; //motor derecho
-            speed_b = 80; //motor izquierdo
-            break;
-        case 0b11001: // linea ligerametne a la derecha
-            speed_a = 70; //motor derecho
-            speed_b = 80; //motor izquierdo
-            break;
-        case 0b10111: // linea desplazada a la izquierda
-            speed_a = 80; //motor derecho
+            speed_a = 0; //motor derecho
             speed_b = 60; //motor izquierdo
             break;
+        case 0b11100: // linea a la derecha
+            speed_a = 0; //motor derecho
+            speed_b = 50; //motor izquierdo
+            break;
+        case 0b11101: // linea desplazada a la derecha
+            speed_a = 50; //motor derecho
+            speed_b = 60; //motor izquierdo
+            break;
+        case 0b11011: // linea al centro
+            speed_a = 60; //motor derecho
+            speed_b = 60; //motor izquierdo
+            break;
+        case 0b11001: // linea ligerametne a la derecha
+            speed_a = 50; //motor derecho
+            speed_b = 60; //motor izquierdo
+            break;
+        case 0b10111: // linea desplazada a la izquierda
+            speed_a = 60; //motor derecho
+            speed_b = 50; //motor izquierdo
+            break;
         case 0b10011: // linea ligeramente a la izquierda
-            speed_a = 80; //motor derecho
-            speed_b = 70; //motor izquierdo
+            speed_a = 60; //motor derecho
+            speed_b = 50; //motor izquierdo
             break;
         case 0b01111: // linea muy a la izquierda
-            speed_a = 90; //motor derecho
-            speed_b = 50; //motor izquierdo
+            speed_a = 60; //motor derecho
+            speed_b = 0; //motor izquierdo
             break;
         case 0b00111: // linea a la izquierda
-            speed_a = 80; //motor derecho
-            speed_b = 50; //motor izquierdo
+            speed_a = 60; //motor derecho
+            speed_b = 0; //motor izquierdo
             break;
         case 0b00011: // giro cerrado izquierdo
-            speed_a = 90; //motor derecho
-            speed_b = 40; //motor izquierdo
+            speed_a = 70; //motor derecho
+            speed_b = 0; //motor izquierdo
             break;
         case 0b11000: // giro cerrado derecha
             speed_a = 40; //motor derecho
@@ -171,9 +171,10 @@ if(cuenta == 0){
             speed_b = 0; //motor izquierdo
             break;
         default:
-            break;
+            speed_a = 0;
+            speed_b = 0;
     }
-}}
+}
 
 /************************************************
  *  Función:        GPTM_Handler
@@ -284,14 +285,14 @@ void TIMER3_Handler(void) {
           dato = (char)(UART7_DR_R & 0xFF);
 
           if(dato == 'r'){ //remoto
-//              GPIO_PortL_Disable();
+              GPIO_PortL_Disable();
               cuenta = 1;
               speed_a = 0;
               speed_b = 0;
           }
 
           else if(dato == 'p'){ //automatico
-//              GPIO_PortL_Init();
+              GPIO_PortL_Init();
               cuenta = 0;
           }
 
@@ -329,3 +330,26 @@ void TIMER3_Handler(void) {
 //    }
 
 }
+
+ void CAN_Handler(void){
+     //Configuración para Recepción Sencilla Sin Mascara Localidad #1
+     CAN_Memoria_Arb(0x101,true,0x2);                        //ID, TxRx, Localidad
+     CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
+
+     //Configuración para la Transmisión Sencilla Localidad #2
+ //    CAN_Memoria_Arb(0xBB,true,0x2);                         //ID, TxRx, Localidad
+ //    CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);     //Mask, DLC, TxIE, RxIE, Remote, Localidad
+ //    CAN_Memoria_Dato(0xBB,0x2);                           //Carga el Campo de Datos de la Transmisión Sencilla Localidad #2
+
+     /*//Configuración para Trama Remota con Recepción Localidad #3
+     CAN_Memoria_Arb(0xCC,false,0x3);                       //ID, TxRx, Localidad
+     CAN_Memoria_CtrlMsk(0xFFF,2,false,true,true,0x3);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
+
+     //Configuración para la Respuesta a Trama Remota Localidad #4
+     CAN_Memoria_Arb(0xDD,true,0x4);                       //ID, TxRx, Localidad #4
+     CAN_Memoria_CtrlMsk(0xFFF,4,false,false,true,0x4);   //Mask, DLC, TxIE, RxIE, Remote, Localidad #4
+     CAN_Memoria_Dato(0x00000000,0x4);                    //Carga el Campo de Datos de la Respuesta a Trama Remota Localidad #4
+     */
+ }
+
+
