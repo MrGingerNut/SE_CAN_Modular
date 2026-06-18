@@ -229,5 +229,50 @@ void Inter_CAN0(void){
     }
 }
 
+void Config_Puertos(void){                      //(TM4C1294NCPDT)
+    SYSCTL_RCGCGPIO_R|=0x01;
+    //Reloj Puerto A
+    while((SYSCTL_PRGPIO_R&0x01)==0){}
+    GPIO_PORTA_AHB_AFSEL_R=0x3;                 //PA0 y PA1 funci�n alterna
+    GPIO_PORTA_AHB_PCTL_R=0x77;                 //Funci�n CAN a los pines PA0-PA1
+    GPIO_PORTA_AHB_DEN_R=0x3;
+    SYSCTL_RCGCGPIO_R |= 0X1100;    // Habilita reloj para puerto J y N
+    while((SYSCTL_PRGPIO_R & 0x1100)==0){}
+
+    GPIO_PORTJ_AHB_DIR_R &= ~0x01;       // (c) PJ0 dirección entrada - boton SW1
+    GPIO_PORTJ_AHB_DEN_R |= 0x01;        //     PJ0 se habilita
+    GPIO_PORTJ_AHB_PUR_R |= 0x01;        //     habilita weak pull-up on PJ1
+    GPIO_PORTJ_AHB_IS_R &= ~0x01;        // (d) PJ1 es sensible por flanco
+    GPIO_PORTJ_AHB_IBE_R &= ~0x01;       //     PJ1 no es sensible a dos flancos
+    GPIO_PORTJ_AHB_IEV_R &= ~0x01;       //     PJ1 detecta eventos de flanco de bajada
+    GPIO_PORTJ_AHB_ICR_R = 0x01;         // (e) limpia la bandera 0
+    GPIO_PORTJ_AHB_IM_R |= 0x01;         // (f) Se desenmascara la interrupcion PJ0 y se envia al controlador de interrupciones
+    NVIC_PRI12_R = (NVIC_PRI12_R&0x00FFFFFF)|0x00000000; // (g) prioridad 0 (pag 159)         //(h) habilita la interrupción 51 en NVIC (Pag. 154)
+    NVIC_EN1_R|=((1<<(51-32)) & 0xFFFFFFFF);
+
+    //Para LEDS
+    GPIO_PORTN_DIR_R |= 0X01;   // PN0 como salida
+    GPIO_PORTN_DEN_R |= 0X01;   // Habilita PN0
+    GPIO_PORTN_DATA_R &= ~0x01;     // Se apaga PN0
+}
+
+
+//--------------------------------------------------------------------
+//%%%%%%%%%%%%%%%%%%%%    INICIALIZACI�N CAN0     %%%%%%%%%%%%%%%%%%%%
+//--------------------------------------------------------------------
+void Config_CAN(void){
+    SYSCTL_RCGCCAN_R=0x1;                       //Reloj modulo 0 CAN
+    while((SYSCTL_PRCAN_R&0x1)==0){}
+                                                //Bit Rate= 1 Mbps      CAN clock=16 [Mhz]
+    CAN0_CTL_R=0x41;                            //Deshab. modo prueba, Hab. cambios en la config. y hab. inicializacion
+    CAN0_BIT_R=0x4900;                          //TSEG2=4   TSEG1=9    SJW=0    BRP=0
+                                                //Lenght Bit time=[TSEG2+TSEG1+3]*tq
+                                                //               =[(Phase2-1)+(Prop+Phase1-1)+3]*tq
+    CAN0_CTL_R&=~0x41;                          //Hab. cambios en la config. y deshab. inicializacion
+    CAN0_CTL_R|=0x02;                            //Hab de interrupci�n en el m�dulo CAN
+    NVIC_EN1_R|=((1<<(38-32)) & 0xFFFFFFFF);    //(TM4C1294NCPDT)
+
+}
+
 
 

@@ -78,6 +78,7 @@ void ADC0_Handler(void){
     }
     else{ // uy quieto
 //        GPIO_PORTK_DATA_R = uyquieto; // idle
+        UART7_DR_R = 'u';
     }
 
 }
@@ -96,14 +97,14 @@ void GPIOK_Handler(void){
     if(BotonPK % 2 == 0){
 //        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'r';
-        CAN_Memoria_Dato(0x72, 0x2); // 'r'
-        CAN_Tx(0x2);
+//        CAN_Memoria_Dato(0x72, 0x2); // 'r'
+//        CAN_Tx(0x2);
     }
     else {
 //        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'p';
-        CAN_Memoria_Dato(0x70, 0x2); // 'p'
-        CAN_Tx(0x2);
+//        CAN_Memoria_Dato(0x70, 0x2); // 'p'
+//        CAN_Tx(0x2);
     }
 
 }
@@ -116,9 +117,9 @@ void GPIOK_Handler(void){
 
 void GPIOL_Handler(void){
 
-    seguidor = GPIO_PORTL_DATA_R & 0x1F;
-
     GPIO_PORTL_ICR_R = 0x1F;
+
+    seguidor = GPIO_PORTL_DATA_R & 0x1F;
 
     switch(seguidor){
 
@@ -284,49 +285,49 @@ void TIMER3_Handler(void) {
 
  void UART7_Handler(void){
 
-//    if(UART7_MIS_R & 0x10){ // esto para recibir
-//
-//          dato = (char)(UART7_DR_R & 0xFF);
-//
-//          if(dato == 'r'){ //remoto
-//              GPIO_PortL_Disable();
-//              cuenta = 1;
-//              speed_a = 0;
-//              speed_b = 0;
-//          }
-//
-//          else if(dato == 'p'){ //automatico
-//              GPIO_PortL_Init();
-//              cuenta = 0;
-//          }
-//
-//          if(dato == 'w' && cuenta ==1){ // forward pa delante
-//              speed_a = 100; // motor derecho
-//              speed_b = 95; // motor izquierdo
-//          }
-//          else if(dato == 'a' && cuenta ==1){ // left pa la izquierda
-//              speed_a = 70;
-//              speed_b = 0;
-//          }
-//          else if(dato == 'd' && cuenta ==1){ // right pa la derecha
-//              speed_a = 0;
-//              speed_b = 70;
-//          }
-//          else if(dato == 'q' && cuenta ==1){ // q de pa delante a la izquierda
-//              speed_a = 70;
-//              speed_b = 50;
-//          }
-//          else if(dato == 'e' && cuenta ==1){ // e de pa delante a la derecha
-//              speed_a = 50;
-//              speed_b = 70;
-//          }
-//          else if(dato == 'u' && cuenta == 1){ // u de uy quietoe
-//              speed_a = 0;
-//              speed_b = 0;
-//          }
-//
-//          UART7_ICR_R = 0x10;
-//      }
+    if(UART7_MIS_R & 0x10){ // esto para recibir
+
+          dato = (char)(UART7_DR_R & 0xFF);
+
+          if(dato == 'r'){ //remoto
+              GPIO_PortL_Disable();
+              cuenta = 1;
+              speed_a = 0;
+              speed_b = 0;
+          }
+
+          else if(dato == 'p'){ //automatico
+              GPIO_PortL_Init();
+              cuenta = 0;
+          }
+
+          if(dato == 'w' && cuenta ==1){ // forward pa delante
+              speed_a = 100; // motor derecho
+              speed_b = 95; // motor izquierdo
+          }
+          else if(dato == 'a' && cuenta ==1){ // left pa la izquierda
+              speed_a = 70;
+              speed_b = 0;
+          }
+          else if(dato == 'd' && cuenta ==1){ // right pa la derecha
+              speed_a = 0;
+              speed_b = 70;
+          }
+          else if(dato == 'q' && cuenta ==1){ // q de pa delante a la izquierda
+              speed_a = 70;
+              speed_b = 50;
+          }
+          else if(dato == 'e' && cuenta ==1){ // e de pa delante a la derecha
+              speed_a = 50;
+              speed_b = 70;
+          }
+          else if(dato == 'u' && cuenta == 1){ // u de uy quietoe
+              speed_a = 0;
+              speed_b = 0;
+          }
+
+          UART7_ICR_R = 0x10;
+      }
 
 //    if(UART7_MIS_R & 0X20){ // esto para transmitir ???
 //
@@ -335,25 +336,25 @@ void TIMER3_Handler(void) {
 
 }
 
- void CAN_Handler(void){
-     //Configuración para Recepción Sencilla Sin Mascara Localidad #1
+// void CAN_Handler(void){
+//     //Configuración para Recepción Sencilla Sin Mascara Localidad #1
 //     CAN_Memoria_Arb(0x101,true,0x2);                        //ID, TxRx, Localidad
 //     CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
-
-     //Configuración para la Transmisión Sencilla Localidad #2
- //    CAN_Memoria_Arb(0xBB,true,0x2);                         //ID, TxRx, Localidad
- //    CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);     //Mask, DLC, TxIE, RxIE, Remote, Localidad
- //    CAN_Memoria_Dato(0xBB,0x2);                           //Carga el Campo de Datos de la Transmisión Sencilla Localidad #2
-
-     /*//Configuración para Trama Remota con Recepción Localidad #3
-     CAN_Memoria_Arb(0xCC,false,0x3);                       //ID, TxRx, Localidad
-     CAN_Memoria_CtrlMsk(0xFFF,2,false,true,true,0x3);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
-
-     //Configuración para la Respuesta a Trama Remota Localidad #4
-     CAN_Memoria_Arb(0xDD,true,0x4);                       //ID, TxRx, Localidad #4
-     CAN_Memoria_CtrlMsk(0xFFF,4,false,false,true,0x4);   //Mask, DLC, TxIE, RxIE, Remote, Localidad #4
-     CAN_Memoria_Dato(0x00000000,0x4);                    //Carga el Campo de Datos de la Respuesta a Trama Remota Localidad #4
-     */
- }
+//
+//     //Configuración para la Transmisión Sencilla Localidad #2
+// //    CAN_Memoria_Arb(0xBB,true,0x2);                         //ID, TxRx, Localidad
+// //    CAN_Memoria_CtrlMsk(0xFFF,2,false,false,false,0x2);     //Mask, DLC, TxIE, RxIE, Remote, Localidad
+// //    CAN_Memoria_Dato(0xBB,0x2);                           //Carga el Campo de Datos de la Transmisión Sencilla Localidad #2
+//
+//     /*//Configuración para Trama Remota con Recepción Localidad #3
+//     CAN_Memoria_Arb(0xCC,false,0x3);                       //ID, TxRx, Localidad
+//     CAN_Memoria_CtrlMsk(0xFFF,2,false,true,true,0x3);      //Mask, DLC, TxIE, RxIE, Remote, Localidad
+//
+//     //Configuración para la Respuesta a Trama Remota Localidad #4
+//     CAN_Memoria_Arb(0xDD,true,0x4);                       //ID, TxRx, Localidad #4
+//     CAN_Memoria_CtrlMsk(0xFFF,4,false,false,true,0x4);   //Mask, DLC, TxIE, RxIE, Remote, Localidad #4
+//     CAN_Memoria_Dato(0x00000000,0x4);                    //Carga el Campo de Datos de la Respuesta a Trama Remota Localidad #4
+//     */
+// }
 
 

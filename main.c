@@ -40,66 +40,66 @@ volatile uint8_t speed_a=0, speed_b=0, seguidor;
 int main(void) {
 
 //    GPIO_PortE_Init();                                                                              /*  Inicialización y configuración del puerto GPIO E */
-//    GPIO_PortL_Init();
-    GPIO_PortK_Init();                                                                              /*  Inicialización y configuración del puerto GPIO K */
+    GPIO_PortL_Init();
+//    GPIO_PortK_Init();                                                                              /*  Inicialización y configuración del puerto GPIO K */
     UART7_Init();                                                                                   /*  Inicialización y configuración del UART7 */
-//    SSI0_Init();                                                                                    /*  Inicialización y configuración del SSI0 */
-//    SSI1_Init();                                                                                    /*  Inicialización y configuración del SSI1 */
-    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
-//    GPTM3_Init();                                                                                   /*  Inicialización y configuración del GPTM 3 */
+    SSI0_Init();                                                                                    /*  Inicialización y configuración del SSI0 */
+    SSI1_Init();                                                                                    /*  Inicialización y configuración del SSI1 */
+//    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
+    GPTM3_Init();                                                                                   /*  Inicialización y configuración del GPTM 3 */
 
-    Config_Puertos();
-    Config_CAN();
-
-    CAN_Memoria_Arb(0x100, true, 0x2);
-    CAN_Memoria_CtrlMsk(0x000, 1, false, false, false, 0x2);
-    CAN_Memoria_Dato(0x00, 0x2);
-
-//for(i=0; i<256;i++){
-//        if(i < 51){
-//            sp20[i] = 255;
-//        } else {
-//            sp20[i] = 0;
-//        }
+//    Config_Puertos();
+//    Config_CAN();
 //
-//        if(i < 102){
-//            sp40[i] = 255;
-//        } else {
-//            sp40[i] = 0;
-//        }
-//        if(i < 127){
-//            sp50[i] = 255;
-//        } else {
-//            sp50[i] = 0;
-//        }
-//        if(i < 153){
-//            sp60[i] = 255;
-//        } else {
-//            sp60[i] = 0;
-//        }
-//        if(i < 180){
-//            sp70[i] = 255;
-//        } else {
-//            sp70[i] = 0;
-//        }
-//        if(i < 204){
-//            sp80[i] = 255;
-//        } else {
-//            sp80[i] = 0;
-//        }
-//        if(i < 231){
-//            sp90[i] = 255;
-//        }
-//        else {
-//            sp90[i] = 0;
-//        }
-//        if(i < 243){
-//            sp95[i] = 255;
-//        }
-//        else {
-//            sp95[i] = 0;
-//        }
-//    }
+//    CAN_Memoria_Arb(0x100, true, 0x2);
+//    CAN_Memoria_CtrlMsk(0x000, 1, false, false, false, 0x2);
+//    CAN_Memoria_Dato(0x00, 0x2);
+
+for(i=0; i<256;i++){
+        if(i < 51){
+            sp20[i] = 255;
+        } else {
+            sp20[i] = 0;
+        }
+
+        if(i < 102){
+            sp40[i] = 255;
+        } else {
+            sp40[i] = 0;
+        }
+        if(i < 127){
+            sp50[i] = 255;
+        } else {
+            sp50[i] = 0;
+        }
+        if(i < 153){
+            sp60[i] = 255;
+        } else {
+            sp60[i] = 0;
+        }
+        if(i < 180){
+            sp70[i] = 255;
+        } else {
+            sp70[i] = 0;
+        }
+        if(i < 204){
+            sp80[i] = 255;
+        } else {
+            sp80[i] = 0;
+        }
+        if(i < 231){
+            sp90[i] = 255;
+        }
+        else {
+            sp90[i] = 0;
+        }
+        if(i < 243){
+            sp95[i] = 255;
+        }
+        else {
+            sp95[i] = 0;
+        }
+    }
 
     while (1);
 }
