@@ -280,49 +280,49 @@ void TIMER3_Handler(void) {
 
  void UART7_Handler(void){
 
-    if(UART7_MIS_R & 0x10){ // esto para recibir
-
-          dato = (char)(UART7_DR_R & 0xFF);
-
-          if(dato == 'r'){ //remoto
-              GPIO_PortL_Disable();
-              cuenta = 1;
-              speed_a = 0;
-              speed_b = 0;
-          }
-
-          else if(dato == 'p'){ //automatico
-              GPIO_PortL_Init();
-              cuenta = 0;
-          }
-
-          if(dato == 'w' && cuenta ==1){ // forward pa delante
-              speed_a = 100; // motor derecho
-              speed_b = 95; // motor izquierdo
-          }
-          else if(dato == 'a' && cuenta ==1){ // left pa la izquierda
-              speed_a = 70;
-              speed_b = 0;
-          }
-          else if(dato == 'd' && cuenta ==1){ // right pa la derecha
-              speed_a = 0;
-              speed_b = 70;
-          }
-          else if(dato == 'q' && cuenta ==1){ // q de pa delante a la izquierda
-              speed_a = 70;
-              speed_b = 50;
-          }
-          else if(dato == 'e' && cuenta ==1){ // e de pa delante a la derecha
-              speed_a = 50;
-              speed_b = 70;
-          }
-          else if(dato == 'u' && cuenta == 1){ // u de uy quietoe
-              speed_a = 0;
-              speed_b = 0;
-          }
-
-          UART7_ICR_R = 0x10;
-      }
+//    if(UART7_MIS_R & 0x10){ // esto para recibir
+//
+//          dato = (char)(UART7_DR_R & 0xFF);
+//
+//          if(dato == 'r'){ //remoto
+//              GPIO_PortL_Disable();
+//              cuenta = 1;
+//              speed_a = 0;
+//              speed_b = 0;
+//          }
+//
+//          else if(dato == 'p'){ //automatico
+//              GPIO_PortL_Init();
+//              cuenta = 0;
+//          }
+//
+//          if(dato == 'w' && cuenta ==1){ // forward pa delante
+//              speed_a = 100; // motor derecho
+//              speed_b = 95; // motor izquierdo
+//          }
+//          else if(dato == 'a' && cuenta ==1){ // left pa la izquierda
+//              speed_a = 70;
+//              speed_b = 0;
+//          }
+//          else if(dato == 'd' && cuenta ==1){ // right pa la derecha
+//              speed_a = 0;
+//              speed_b = 70;
+//          }
+//          else if(dato == 'q' && cuenta ==1){ // q de pa delante a la izquierda
+//              speed_a = 70;
+//              speed_b = 50;
+//          }
+//          else if(dato == 'e' && cuenta ==1){ // e de pa delante a la derecha
+//              speed_a = 50;
+//              speed_b = 70;
+//          }
+//          else if(dato == 'u' && cuenta == 1){ // u de uy quietoe
+//              speed_a = 0;
+//              speed_b = 0;
+//          }
+//
+//          UART7_ICR_R = 0x10;
+//      }
 
 //    if(UART7_MIS_R & 0X20){ // esto para transmitir ???
 //
