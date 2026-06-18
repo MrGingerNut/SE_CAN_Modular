@@ -76,9 +76,9 @@ void ADC0_Handler(void){
 //        while((UART7_FR_R & 0x20) != 0);
                  UART7_DR_R = 'w';
     }
-//    else{ // uy quieto
-        //GPIO_PORTK_DATA_R = uyquieto; // idle
-//    }
+    else{ // uy quieto
+//        GPIO_PORTK_DATA_R = uyquieto; // idle
+    }
 
 }
 
@@ -94,11 +94,11 @@ void GPIOK_Handler(void){
     BotonPK++;
 
     if(BotonPK % 2 == 0){
-        while((UART7_FR_R & 0x20) != 0);
+//        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'r';
     }
     else {
-        while((UART7_FR_R & 0x20) != 0);
+//        while((UART7_FR_R & 0x20) != 0);
         UART7_DR_R = 'p';
     }
 
@@ -309,7 +309,7 @@ void TIMER3_Handler(void) {
               speed_a = 50;
               speed_b = 70;
           }
-          else if(cuenta == 1){
+          else if(dato == 'u' && cuenta == 1){ // u de uy quietoe
               speed_a = 0;
               speed_b = 0;
           }

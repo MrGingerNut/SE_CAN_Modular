@@ -41,7 +41,7 @@ int main(void) {
     GPIO_PortE_Init();                                                                              /*  Inicialización y configuración del puerto GPIO E */
 //    GPIO_PortL_Init();
 //    GPIO_PortK_Init();                                                                              /*  Inicialización y configuración del puerto GPIO K */
-    UART7_Init();                                                                                   /*  Inicialización y configuración del UART7 */
+//    UART7_Init();                                                                                   /*  Inicialización y configuración del UART7 */
     SSI0_Init();                                                                                    /*  Inicialización y configuración del SSI0 */
     SSI1_Init();                                                                                    /*  Inicialización y configuración del SSI1 */
 //    ADC0_SS2_Init();                                                                                /*  Inicialización y configuración del ADC0 SS2 */
