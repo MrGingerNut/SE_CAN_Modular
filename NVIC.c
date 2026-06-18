@@ -259,6 +259,10 @@ void TIMER3_Handler(void) {
             SSI1_DR_R = 0x1100 | (sp90[b] & 0xFF); // envia dato.
             b = (b + 1) & 0xFF;
             break;
+        case 95:
+            SSI1_DR_R = 0x1100 | (sp95[b] & 0xFF); // envia dato.
+            b = (b + 1) & 0xFF;
+            break;
         case 100:
             SSI1_DR_R = 0X1100 | (255 & 0xFF);
             break;
@@ -289,9 +293,9 @@ void TIMER3_Handler(void) {
               cuenta = 0;
           }
 
-          else if(dato == 'w' && cuenta ==1){ // forward pa delante
-              speed_a = 80;
-              speed_b = 80;
+          if(dato == 'w' && cuenta ==1){ // forward pa delante
+              speed_a = 100; // motor derecho
+              speed_b = 95; // motor izquierdo
           }
           else if(dato == 'a' && cuenta ==1){ // left pa la izquierda
               speed_a = 70;
