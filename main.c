@@ -38,6 +38,8 @@ volatile uint8_t speed_a=0, speed_b=0, seguidor;
 
 int main(void) {
 
+    dato = 'p';
+
 //    GPIO_PortE_Init();                                                                              /*  Inicialización y configuración del puerto GPIO E */
     GPIO_PortL_Init();
 //    GPIO_PortK_Init();                                                                              /*  Inicialización y configuración del puerto GPIO K */

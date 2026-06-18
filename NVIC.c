@@ -112,10 +112,10 @@ void GPIOK_Handler(void){
 
 void GPIOL_Handler(void){
 
-    GPIO_PORTL_ICR_R = 0x1F;
-
     seguidor = GPIO_PORTL_DATA_R & 0x1F;
 
+    GPIO_PORTL_ICR_R = 0x1F;
+if(cuenta == 0){
     switch(seguidor){
 
         case 0b11111: // fuera de linea giro fuerte pa la izquierda
@@ -170,8 +170,10 @@ void GPIOL_Handler(void){
             speed_a = 0; //motor derecho
             speed_b = 0; //motor izquierdo
             break;
+        default:
+            break;
     }
-}
+}}
 
 /************************************************
  *  Función:        GPTM_Handler
@@ -282,14 +284,14 @@ void TIMER3_Handler(void) {
           dato = (char)(UART7_DR_R & 0xFF);
 
           if(dato == 'r'){ //remoto
-              GPIO_PortL_Disable();
+//              GPIO_PortL_Disable();
               cuenta = 1;
               speed_a = 0;
               speed_b = 0;
           }
 
           else if(dato == 'p'){ //automatico
-              GPIO_PortL_Init();
+//              GPIO_PortL_Init();
               cuenta = 0;
           }
 
